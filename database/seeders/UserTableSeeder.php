@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\User;
+use Illuminate\Database\Seeder;
 
 class UserTableSeeder extends Seeder
 {
@@ -14,10 +14,22 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
+//        User::created([
+//            'name'=>'Herick Guimaraes',
+//            'email'=>'herick@hotmail.com',
+//            'passworld'=>bcrypt('123456'),
+//            ]);
+
+        $data = [
             'name'=>'Herick Guimaraes',
             'email'=>'herick@hotmail.com',
-            'passworld'=>bcrypt('123456'),
-            ]);
+            'password'=>bcrypt('123456')
+        ];
+
+        $user = new User();
+        $user->fill($data);
+        $user->save();
+        dd($user);
+
     }
 }
