@@ -14,22 +14,22 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-//        User::created([
-//            'name'=>'Herick Guimaraes',
-//            'email'=>'herick@hotmail.com',
-//            'passworld'=>bcrypt('123456'),
-//            ]);
-
-        $data = [
-            'name'=>'Herick Guimaraes',
-            'email'=>'herick@hotmail.com',
-            'password'=>bcrypt('123456')
-        ];
-
-        $user = new User();
-        $user->fill($data);
-        $user->save();
-        dd($user);
-
+        try {
+            $data = [
+                'name'=>'Herick Guimaraes',
+                'email'=>'herick@hotmail.com',
+                'password'=>bcrypt('123456')
+            ];
+            $user = new User();
+            $user->fill($data);
+            if(User::where('email', $data['email'])->count()) {
+                echo "Este e-mail já está cadastrado: " . $data['email'] ." \n";
+            } else {
+                $user->save();
+                echo "Usuãrio caddastrado" . "\n";
+            }
+        } catch (\Exception $e){
+            echo 'Exceção: ', $e->getMessage(), "\n\n";
+        }
     }
 }
