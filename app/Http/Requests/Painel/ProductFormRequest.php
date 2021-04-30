@@ -24,18 +24,21 @@ class ProductFormRequest extends FormRequest
     public function rules()
     {
         return [
-        'name'          =>'required|min:3|max:100',
-        'number'        =>'required|numeric',
-        'category'      =>'required',
-        'descrition'    =>'|max:1000'
+            'name' => 'required|min:3|max:100',
+            'number' => 'required|numeric',
+            'category' => 'required',
+            'descrition' => 'required|max:1000'
         ];
     }
+
     public function messages()
     {
         return [
-        'name.required'=>'O campo nome é de preenchimento obrigatório',
-        'number.numeric'=>'precisar ser apenas numeros',
-        'number.required'=>'O campo número é de preenchimento obrigatório'
-    ];
+            'category.required' => 'A categoria tem que ser definida',
+            'name.required' => 'O campo nome é de preenchimento obrigatório',
+            'number.numeric' => 'precisar ser apenas numeros',
+            'number.required' => 'O campo número é de preenchimento obrigatório',
+            'descrition.required' => 'A Descrição é obrigatória',
+        ];
     }
 }

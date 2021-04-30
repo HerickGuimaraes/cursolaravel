@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
             $table->string('name',150);
             $table->bigInteger('number'); //Aqui estava integer e isso deixou de ser assim no 7 rs
             $table->boolean('active');
-            $table->string('image', 200)->NULnulltable();
+            $table->string('image', 200)->default("");
             $table->enum('category',['eletronicos','banho','pet','mercearia']);
             $table->text('descrition');
             $table->timestamps();

@@ -5,8 +5,7 @@ Deu certo sim kkkk
 @endsection
 
 @section('content')
-<h1 class="title-pg">Listagem de Produtos</h1>
-
+<h1 class="title-pg">{{$title}}</h1>
 <a href="{{'/painel/produtos/create'}}" type="button" class="btn btn-primary btn-add"><span class="glyphicon glyphicon-plus"></span> Cadastrar</a>
 <hr>
 <table class="table table-striped">
