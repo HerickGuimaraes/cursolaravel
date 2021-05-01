@@ -4,6 +4,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Painel\ProductFormRequest;
 use App\Models\Painel\Product;
 use Illuminate\Http\Request;
+use Symfony\Component\VarDumper\Dumper\DataDumperInterface;
 
 class ProdudoController extends Controller
 {
@@ -46,14 +47,7 @@ class ProdudoController extends Controller
      */
     public function store(ProductFormRequest $request)
     {
-
-
         $dataForm = $request->except('_token');
-//        dd($dataForm['category']);
-//
-//        "Escolha a categoria"
-//
-
         $dataForm['active'] = (!isset($dataForm['active'])) ? 0 : 1;
         $insert = $this->product->create($dataForm);
         if ($insert)
@@ -70,7 +64,8 @@ class ProdudoController extends Controller
      */
     public function show($id)
     {
-        return "visulizar produto {$id}";
+        $product = Product::where('id',$id)->first();
+        return view('painel.products.view', compact('product'));
     }
 
     /**
@@ -113,6 +108,10 @@ class ProdudoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = $this->product->findOrFail($id);
+        if ( $product->delete())
+            return redirect(route('index'))->with(['errors' => 'Falha!!!']);
+        else
+            return redirect(route('product.edit', $id))->with(['errors' => 'Falha!!!']);
     }
 }

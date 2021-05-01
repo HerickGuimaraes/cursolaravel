@@ -17,10 +17,10 @@ route::group(['namespace' => 'Site'], function () {
 route::group(['prefix' => 'painel'], function () {
     route::group(['prefix' => 'produtos'], function () {
         Route::get('/', [ProdudoController::class, 'index'])->name('index');
+        route::get('/delete/{id}', [ProdudoController::class, 'destroy'])->name('product.delete'); //Excluir
         route::get('/create', [ProdudoController::class, 'create'])->name('create'); //Criar
         route::get('/edit/{id}', [ProdudoController::class, 'edit'])->name('product.edit'); //Editar View
-        route::post('/update/{id}', [ProdudoController::class, 'update'])->name('product.update'); //Editar
-        route::get('/delete/{id}', [ProdudoController::class, 'destroy'])->name('product.delete'); //Excluir
+        route::post('/update/{id}', [ProdudoController::class, 'update'])->name('product.update'); //Atualizar
         route::get('/view/{id}', [ProdudoController::class, 'show'])->name('product.view');//Visualizar
         route::post('/store', [ProdudoController::class, 'store'])->name('store'); //Armazenar
     });
